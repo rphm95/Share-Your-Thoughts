@@ -251,5 +251,3 @@ export const getUserPosts = async (req, res) => {
 		res.status(500).json({ error: "Internal server error" });
 	}
 };
-
-// IM RIGHT ON THE GET LIKED POSTS. 4:48
