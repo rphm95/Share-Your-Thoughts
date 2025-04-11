@@ -42,7 +42,7 @@ function App() {
     )
   }
 
-  console.log("authUser: ", authUser);
+  //console.log("authUser: ", authUser);
 
   return (
     <div className="flex max-w-6xl mx-auto">

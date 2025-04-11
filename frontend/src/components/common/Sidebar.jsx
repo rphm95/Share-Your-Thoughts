@@ -20,13 +20,13 @@ const Sidebar = () => {
 				});
 				const data = await res.json();
 				if (!res.ok) throw new Error(data.error || "Failed to logout");
-				return data;
+		
 			} catch (error) {
 				throw new Error(error)
 			}
 		},
 		onSuccess: () => {
-			toast.success("Logged out successfully");
+			// toast.success("Logged out successfully");
 			queryClient.invalidateQueries({ queryKey: ["authUser"] }); // this is to logout the user 
 		},
 		onError: () => {
@@ -34,12 +34,6 @@ const Sidebar = () => {
 		}
 
 	})
-
-	const data = {
-		fullName: "John Doe",
-		username: "johndoe",
-		profileImg: "/avatars/boy1.png",
-	};
 
 	const { data: authUser } = useQuery({ queryKey: ["authUser"] }); // this is to get the user data from the queryClient, so we dont have to fetch it again, we are using this because we are not using the useQuery hook in this component, so we need to get the data from the queryClient directly.
 
@@ -81,7 +75,7 @@ const Sidebar = () => {
 				</ul>
 
                 {/* Here is justsaying that if we have data, which means if there is a user loged in, then display the icons on the bottom */}
-				{data && (
+				{authUser && (
 					<Link
 						to={`/profile/${authUser.username}`}
 						className='mt-auto mb-10 flex gap-2 items-start transition-all duration-300 hover:bg-[#181818] py-2 px-4 rounded-full'
