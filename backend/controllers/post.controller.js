@@ -123,7 +123,8 @@ export const likeUnlikePost = async (req, res) => {
             //if the user has already liked the post, unlike it
             await Post.updateOne({_id: postId}, { $pull: { likes: userId } });
             await User.updateOne({_id: userId}, { $pull: { likedPosts: postId } });
-            res.status(200).json({ message: "Post unliked" });
+            const updatedLikes = post.likes.filter((id) => id.toString() !== userId.toString()); //this line has something to do with updating the UI after it gets liked
+            res.status(200).json(updatedLikes);
         }
         else {
             //if the user has not liked the post, like it
@@ -138,7 +139,8 @@ export const likeUnlikePost = async (req, res) => {
             });
 
             await notification.save();
-            res.status(200).json({ message: "Post liked" });
+            const updatedLikes = post.likes;
+            res.status(200).json(updatedLikes);
         }
 
     } catch (error) {
