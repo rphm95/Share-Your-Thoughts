@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import RightPanelSkeleton from "../skeletons/RightPanelSkeleton";
 // this gives a little "loading" effect https://daisyui.com/components/skeleton/
-import { USERS_FOR_RIGHT_PANEL } from "../../utils/db/dummy";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
-import { useMutation } from "@tanstack/react-query";
+
+import useFollow from "../../hooks/useFollow";
+import LoadingSpinner from "./LoadingSpinner";
 
 const RightPanel = () => {
 	// const isLoading = false; // this should be a state that is set to true when the data is being fetched
@@ -23,6 +23,8 @@ const RightPanel = () => {
 			}
 		}
 	});
+
+	const{ follow, isPending } = useFollow(); //this is our reusable hook to follow and unfollow. it is being called on line 70
 
 	if(suggestedUsers?.length === 0 ) <div className="md:w-64 w-0"></div>;
 
@@ -63,9 +65,12 @@ const RightPanel = () => {
 								<div>
 									<button
 										className='btn bg-white text-black hover:bg-white hover:opacity-90 rounded-full btn-sm'
-										onClick={(e) => e.preventDefault()}
+										onClick={(e) => {
+											e.preventDefault()
+											follow(user._id);
+										}}
 									>
-										Follow
+										{isPending ? <LoadingSpinner size="sm" /> : "Follow" }
 									</button>
 								</div>
 							</Link>
