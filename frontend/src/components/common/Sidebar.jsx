@@ -1,4 +1,6 @@
 import XSvg from "../svgs/X";
+import logo from "../../../public/origami-bird-svgrepo-com.svg";
+
 
 import { MdHomeFilled } from "react-icons/md";
 import { IoNotifications } from "react-icons/io5";
@@ -41,7 +43,8 @@ const Sidebar = () => {
 		<div className='md:flex-[2_2_0] w-18 max-w-52'>
 			<div className='sticky top-0 left-0 h-screen flex flex-col border-r border-gray-700 w-20 md:w-full'>
 				<Link to='/' className='flex justify-center md:justify-start'>
-					<XSvg className='px-2 w-12 h-12 rounded-full fill-white hover:bg-stone-900' />
+					<img src={logo} className='px-2 w-15 h-15 rounded-full fill-white hover:bg-stone-900'></img>
+					{/* <XSvg className='px-2 w-12 h-12 rounded-full fill-white hover:bg-stone-900' /> */}
 				</Link>
 				<ul className='flex flex-col gap-3 mt-4'>
 					<li className='flex justify-center md:justify-start'>
