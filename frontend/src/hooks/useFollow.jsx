@@ -23,7 +23,7 @@ const useFollow = () => {
         onSuccess: () => {
             Promise.all([
                 queryClient.invalidateQueries({queryKey: ["suggestedUsers"]}),
-                queryClient.invalidateQueries({queryKey: ["authUsers"]}) //this so we update the profile of the user to "follow" or "unfollow"
+                queryClient.invalidateQueries({queryKey: ["authUser"]}), //this so we update the profile of the user to "follow" or "unfollow"
             ])
             
         },
