@@ -3,6 +3,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import { v2 as cloudinary } from "cloudinary";
+import path from "path";
 
 // routes
 import authRoutes from "./routes/auth.route.js";
@@ -23,6 +24,8 @@ cloudinary.config({
 
 const app = express();
 const PORT = process.env.PORT || 8000
+//this abajo was added for deployment.
+const __dirname = path.resolve(); 
 
 app.use(express.json({limit: "5mb"})); //it runs between request and response, to parse req.boy
 //limit shouldnt be too high to prevent DOS attacks
@@ -34,6 +37,14 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/notifications", notificationRoutes);
+
+if (process.env.NODE_ENV === "production"){
+    app.use(express.static(path.join(__dirname, "/frontend/dist")))
+
+    app.get("*", (req,res) => {
+        res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+    })
+}
 
 
 app.listen(PORT, () => {
