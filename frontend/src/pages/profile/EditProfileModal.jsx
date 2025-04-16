@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
-import toast from "react-hot-toast";
+// import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
+// import toast from "react-hot-toast";
+import useUpdateUserProfile from "../../hooks/useUpdateUserProfile";
 
 
 const EditProfileModal = ({authUser}) => {
-	const queryClient = useQueryClient();
+	// const queryClient = useQueryClient();
 
 	const [formData, setFormData] = useState({
 		fullName: "",
@@ -16,39 +17,44 @@ const EditProfileModal = ({authUser}) => {
 		currentPassword: "",
 	});
 
-	const {mutate:updateProfile, isPending:isUpdatingProfile} = useMutation({
-			mutationFn: async () => {
-				// here is just the cover and profile image, the rest of the profile is under EditProfileModal page
-				try {
-					const res = await fetch(`/api/users/update`,	{
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json",
-						},
-						body: JSON.stringify(formData),
-					})
-					const data = await res.json();
-					if (!res.ok) {
-						throw new Error(data.error || "Something went wrong")
-					}
-					return data
+	// calling the hook now
+	const { isUpdatingProfile, updateProfile } = useUpdateUserProfile();
+
+	// this entire function became a hook to be utilized in 2 different places.
+	// const {mutate:updateProfile, isPending:isUpdatingProfile} = useMutation({
+	// 		mutationFn: async () => {
+	// 			// here is just the cover and profile image, the rest of the profile is under EditProfileModal page
+	// 			try {
+	// 				const res = await fetch(`/api/users/update`,	{
+	// 					method: "POST",
+	// 					headers: {
+	// 						"Content-Type": "application/json",
+	// 					},
+	// 					body: JSON.stringify(formData),
+	// 				})
+	// 				const data = await res.json();
+	// 				if (!res.ok) {
+	// 					throw new Error(data.error || "Something went wrong")
+	// 				}
+	// 				return data
 	
-				} catch (error) {
-					throw new Error(error.message)
-				}
-			},
-			onSuccess: () => {
-				toast.success("Profile updated successfully")
-				// we are going to invalidade the user profile to display the image and the one on the side bar as well
-				Promise.all([
-					queryClient.invalidateQueries({ queryKey: ["authUser"]}),
-					queryClient.invalidateQueries({ queryKey: ["userProfile"]}),
-				])
-			},
-			onError: (error) => {
-				toast.error(error.message)
-			}
-		})
+	// 			} catch (error) {
+	// 				throw new Error(error.message)
+	// 			}
+	// 		},
+	// 		onSuccess: () => {
+	// 			toast.success("Profile updated successfully")
+	// 			// we are going to invalidade the user profile to display the image and the one on the side bar as well
+	// 			Promise.all([
+	// 				queryClient.invalidateQueries({ queryKey: ["authUser"]}),
+	// 				queryClient.invalidateQueries({ queryKey: ["userProfile"]}),
+	// 			])
+	// 		},
+	// 		onError: (error) => {
+	// 			toast.error(error.message)
+	// 		}
+	// })
+	
 
 
 
@@ -86,7 +92,7 @@ const EditProfileModal = ({authUser}) => {
 						className='flex flex-col gap-4'
 						onSubmit={(e) => {
 							e.preventDefault();
-							updateProfile();
+							updateProfile(formData);
 						}}
 					>
 						<div className='flex flex-wrap gap-2'>
