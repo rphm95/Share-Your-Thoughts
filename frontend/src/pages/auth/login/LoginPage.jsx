@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import XSvg from "../../../components/svgs/X";
-import logo from "../../../../public/origami-bird-svgrepo-com.svg"
+import logo from "../../../Sut.png";
 
 import { MdOutlineMail } from "react-icons/md";
 import { MdPassword } from "react-icons/md";
@@ -60,13 +60,13 @@ const LoginPage = () => {
 		<div className='max-w-screen-xl mx-auto flex h-screen px-10'>
 			<div className='flex-1 hidden lg:flex items-center  justify-center'>
 				{/* <XSvg className='lg:w-2/3 fill-white'  /> */}
-				<img src={logo} className=' lg:w-2/3 fill-white'></img>
+				<img src={logo} className=' lg:w-4/5 fill-white'></img>
 			</div>
 			<div className='flex-1 flex flex-col justify-center items-center'>
 				<form className='flex gap-4 flex-col' onSubmit={handleSubmit}>
 					{/* <XSvg className='w-24 lg:hidden fill-white' /> */}
-					<img src={logo} className='w-24 lg:hidden fill-white'></img>
-					<h1 className='text-4xl font-extrabold text-white'>{"Let's"} go.</h1>
+					<img src={logo} className='w-48 lg:hidden fill-white'></img>
+					<h1 className='text-4xl font-extrabold text-black'>{"Let's"} go.</h1>
 					<label className='input input-bordered rounded flex items-center gap-2'>
 						<MdOutlineMail />
 						<input

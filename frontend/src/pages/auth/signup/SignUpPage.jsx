@@ -3,7 +3,7 @@ import { useState } from "react";
 
 // X logo
 import XSvg from "../../../components/svgs/X.jsx";
-import logo from "../../../../public/origami-bird-svgrepo-com.svg"
+import logo from "../../../Sut.png";
 
 //icons imports
 import { MdOutlineMail } from "react-icons/md";

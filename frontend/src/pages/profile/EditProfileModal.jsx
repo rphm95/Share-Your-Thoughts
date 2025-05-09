@@ -85,8 +85,8 @@ const EditProfileModal = ({authUser}) => {
 			>
 				Edit profile
 			</button>
-			<dialog id='edit_profile_modal' className='modal'>
-				<div className='modal-box border rounded-md border-gray-700 shadow-md'>
+			<dialog id='edit_profile_modal' className='modal' >
+				<div className='modal-box border rounded-md border-gray-700 shadow-md bg-purple-300' style={{paddingBottom:"0px"}} >
 					<h3 className='font-bold text-lg my-3'>Update Profile</h3>
 					<form
 						className='flex flex-col gap-4'
@@ -179,7 +179,7 @@ const EditProfileModal = ({authUser}) => {
 					</form>
 				</div>
 				<form method='dialog' className='modal-backdrop'>
-					<button className='outline-none'>close</button>
+					<button className='outline-none bg-black-700'>close</button>
 				</form>
 			</dialog>
 		</>
