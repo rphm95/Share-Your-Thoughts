@@ -2,7 +2,7 @@
 
 A full-stack social media web application where users can express their thoughts, comment on posts, like content, and follow/unfollow others — built to create a simple, interactive social experience.
 
-**Live Site**: 🌍 [Visit SYT]([https://your-app-url.onrender.com](https://share-your-thoughts-3k5y.onrender.com))
+**Live Site**: 🌍 [Visit SYT](https://share-your-thoughts-3k5y.onrender.com)
 
 ## 🚀 Features
 
