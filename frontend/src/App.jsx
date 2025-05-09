@@ -7,7 +7,7 @@ import SignUpPage from "./pages/auth/signup/SignUpPage";
 import NotificationPage from './pages/notifications/NotificationPage';
 import ProfilePage from './pages/profile/ProfilePage';
 
-import Sidebar from './components/common/SideBar';
+import Sidebar from './components/common/Sidebar';
 import RightPanel from './components/common/RightPanel';
 import { Toaster } from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
